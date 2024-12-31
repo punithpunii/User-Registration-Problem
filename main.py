@@ -1,5 +1,5 @@
 import re
-#UC-4 A User need to follow pre-defined Mobile Format (E.g. 91 9919819801)
+#UC-5 Password Rule1 – minimum 8 Characters
 
 def valid_name_check(name): # Name Validation
     name_pattern = r"^[A-Z][A-Za-z]{2,}$"
@@ -25,6 +25,14 @@ def valid_phno_check(phno): # Phno Validation
         print("Invalid Phone Number, valid Phone Number-> (E.g. 91 9919819801)")
         exit()
 
+def valid_passwd_check(password): # Passwd Validation
+    passwd_pattern = r".{8,}"
+    if re.match(passwd_pattern, password):
+        print("Valid Password")
+    else:
+        print("Invalid Password, valid Phone Number-> (E.g. 91 9919819801)")
+        exit()
+
 firstname = input("Enter the First Name:")
 valid_name_check(firstname) #UC-1 First name starts with Cap and has minimum 3 characters
 lastname = input("Enter the Last Name:")
@@ -32,4 +40,6 @@ valid_name_check(lastname) #UC-2 Last name starts with Cap and has minimum 3 cha
 email = input("Enter your Email Address:")
 valid_email_check(email) #UC-3 A User need to enter a valid email (E.g. abc.xyz@bl.co.in)
 phno = input("Enter your Phone Number:")
-valid_phno_check(phno)
+valid_phno_check(phno) #UC-4 A User need to follow pre-defined Mobile Format
+password = input("Enter your Password:")
+valid_passwd_check(password)
