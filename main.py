@@ -1,5 +1,5 @@
 import re
-#UC-7 Password Rule3 – Should have at least 1 numeric number
+#UC-8 Password Rule4 – Should have Exactly 1 Special Character
 
 class InvalidName(Exception):
     pass
@@ -11,7 +11,11 @@ class InvalidPhno(Exception):
     pass
 
 class InvalidPassword(Exception):
-    pass
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return self.message
 
 def valid_name_check(name): # Name Validation
     name_pattern = r"^[A-Z][A-Za-z]{2,}$"
@@ -36,8 +40,8 @@ def valid_phno_check(phno): # Phno Validation
 
 def valid_passwd_check(password): # Password Validation
     passwd_pattern = r"(?=.*[A-Z])(?=.*[0-9]).{8,}$"
-    if not re.match(passwd_pattern, password) :
-        raise InvalidPassword("Password must be at least 8 characters long, Atleast 1 Upper Case, Atleast 1 Number")
+    if not (re.match(passwd_pattern, password) and len(re.findall(r"[!@#$%^&*()_+]", password)) == 1):
+        raise InvalidPassword("Password must be at least 8 characters long, Atleast 1 Upper Case, Atleast 1 Number and Exactly 1 Special Character")
     else:
         print("Valid Password")
 try:
