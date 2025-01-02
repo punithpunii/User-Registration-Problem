@@ -1,5 +1,5 @@
 import re
-#UC-6 Password Rule2 – Should have at least 1 Upper Case
+#UC-7 Password Rule3 – Should have at least 1 numeric number
 
 def valid_name_check(name): # Name Validation
     name_pattern = r"^[A-Z][A-Za-z]{2,}$"
@@ -25,12 +25,12 @@ def valid_phno_check(phno): # Phno Validation
         print("Invalid Phone Number, valid Phone Number-> (E.g. 91 9919819801)")
         exit()
 
-def valid_passwd_check(password): # Passwd Validation
-    passwd_pattern = r"(?=.*[A-Z]).{8,}$"
+def valid_passwd_check(password): # Password Validation
+    passwd_pattern = r"(?=.*[A-Z])(?=.*[0-9]).{8,}$"
     if re.match(passwd_pattern, password):
         print("Valid Password")
     else:
-        print("Invalid Password")
+        print("Password must be at least 8 characters long, Atleast 1 Upper Case and Atleast 1 Number")
         exit()
 
 firstname = input("Enter the First Name:")
